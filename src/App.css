@@ -669,7 +669,6 @@ h1 {
         text-align: left;
     }
 
-    .hero-grid,
     .split-text,
     .about-columns,
     .table-wrap,
@@ -681,6 +680,12 @@ h1 {
 
     .updated {
         margin-top: 20px;
+    }
+
+    .hero-grid {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 28px;
     }
 
     h1,
