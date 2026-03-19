@@ -184,7 +184,27 @@ function App() {
   const [page, setPage] = useState("home");
   const [filter, setFilter] = useState("All Projects");
   const [contactOpen, setContactOpen] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const [activeProject, setActiveProject] = useState(null);
+  const [formData, setFormData] = useState({ name: "", email: "", project: "", budget: "", deadline: "" });
+
+  const handleOpenContact = () => {
+    setShowSuccess(false);
+    setContactOpen(true);
+  };
+
+  const handleContactSubmit = () => {
+    const subject = encodeURIComponent(`New Project Proposal from ${formData.name || "a Visitor"}`);
+    const body = encodeURIComponent(
+      `Hi, my name is ${formData.name || "[Name]"}.\n\n` +
+      `You can answer me on this email: ${formData.email || "[Email]"}.\n\n` +
+      `I am looking for help with a: ${formData.project || "[Project]"}.\n\n` +
+      `My budget is: ${formData.budget || "[Budget]"}\n\n` +
+      `I need it done by: ${formData.deadline || "[Date]"}`
+    );
+    window.location.href = `mailto:eogunneye@gmail.com?subject=${subject}&body=${body}`;
+    setShowSuccess(true);
+  };
 
   const caseItems = useMemo(() => {
     if (filter === "All Projects") return works;
@@ -222,7 +242,7 @@ function App() {
             >
               About
             </button>
-            <button onClick={() => setContactOpen(true)}>Contacts</button>
+            <button onClick={handleOpenContact}>Contacts</button>
           </nav>
 
           <div className="social-mini">
@@ -492,27 +512,47 @@ function App() {
             <div className="contact-lines">
               <label>
                 Hi, my name is
-                <input placeholder="Emmanuel Ogunneye" />
+                <input 
+                  placeholder="Emmanuel Ogunneye" 
+                  value={formData.name}
+                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+                />
               </label>
               <label>
                 You can answer me on this email
-                <input placeholder="email@example.com" />
+                <input 
+                  placeholder="email@example.com" 
+                  value={formData.email}
+                  onChange={(e) => setFormData({...formData, email: e.target.value})}
+                />
               </label>
               <label>
                 I am looking for help with a
-                <input placeholder="website, app, product" />
+                <input 
+                  placeholder="website, app, product" 
+                  value={formData.project}
+                  onChange={(e) => setFormData({...formData, project: e.target.value})}
+                />
               </label>
               <label>
                 My budget is
-                <input placeholder="1000" />
+                <input 
+                  placeholder="1000" 
+                  value={formData.budget}
+                  onChange={(e) => setFormData({...formData, budget: e.target.value})}
+                />
               </label>
               <label>
                 and I need it done by
-                <input placeholder="May 31, 2026" />
+                <input 
+                  placeholder="May 31, 2026" 
+                  value={formData.deadline}
+                  onChange={(e) => setFormData({...formData, deadline: e.target.value})}
+                />
               </label>
             </div>
 
-            <button className="contact-btn">Contact Us</button>
+            <button className="contact-btn" onClick={handleContactSubmit}>Contact Us</button>
 
             <p className="contact-meta">
               <a
