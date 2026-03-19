@@ -75,6 +75,7 @@
 .footer-bottom p {
     margin: 4px 0 0;
     display: flex;
+    flex-wrap: wrap;
     gap: 14px;
     justify-content: flex-end;
 }
@@ -601,8 +602,6 @@ h1 {
 }
 
 .contact-lines input {
-    width: 100%;
-    box-sizing: border-box;
     border: 0;
     border-bottom: 1px solid #cacad0;
     background: transparent;
@@ -702,6 +701,8 @@ h1 {
     }
 
     .contact-lines input {
+        width: 100%;
+        box-sizing: border-box;
         font-size: 28px;
     }
 
