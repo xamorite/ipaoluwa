@@ -41,8 +41,10 @@
 
 .pill-nav {
     display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
     background: #f2f2f2;
-    border-radius: 999px;
+    border-radius: 36px;
     padding: 6px;
     gap: 6px;
 }
@@ -202,6 +204,7 @@ h1 {
     color: #c7ccdf;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -332,6 +335,7 @@ h1 {
 
 .chips {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
     margin-bottom: 40px;
 }
@@ -597,6 +601,8 @@ h1 {
 }
 
 .contact-lines input {
+    width: 100%;
+    box-sizing: border-box;
     border: 0;
     border-bottom: 1px solid #cacad0;
     background: transparent;
@@ -725,5 +731,33 @@ h1 {
             rgba(8, 10, 16, 0.28) 30%,
             rgba(8, 10, 16, 0.74) 100%
         );
+    }
+}
+
+@media (max-width: 600px) {
+    .line-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+        padding-bottom: 16px;
+    }
+    
+    .line-row p:last-child {
+        font-size: 15px;
+        color: #797b86;
+    }
+    
+    .grid-four img,
+    .case-grid article {
+        height: auto;
+        aspect-ratio: 1.2;
+    }
+    
+    .lead-image img,
+    .lead-image video {
+        max-height: 380px;
+    }
+    
+    .contact-title {
+        font-size: clamp(28px, 8vw, 36px);
     }
 }
