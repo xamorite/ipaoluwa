@@ -659,7 +659,11 @@ h1 {
 
     .social-mini,
     .social-mini p,
+    .footer-top p,
+    .footer-top p:nth-child(2),
+    .footer-top p:nth-child(3),
     .footer-bottom p,
+    .footer-bottom p:nth-child(2),
     .footer-bottom p:nth-child(3) {
         justify-content: flex-start;
         text-align: left;
