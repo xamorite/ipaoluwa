@@ -555,20 +555,26 @@ h1 {
 .contact-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(13, 15, 23, 0.2);
+    background: rgba(13, 15, 23, 0.4);
     display: flex;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: center;
     z-index: 50;
+    padding: 24px;
+    box-sizing: border-box;
 }
 
 .contact-panel {
-    width: min(42vw, 760px);
-    min-width: 520px;
-    height: 100%;
+    width: 100%;
+    max-width: 760px;
+    max-height: 90vh;
     background: #efefef;
     padding: 42px 54px;
+    border-radius: 20px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
     position: relative;
     overflow-y: auto;
+    box-sizing: border-box;
 }
 
 .close {
@@ -627,8 +633,9 @@ h1 {
 }
 
 .contact-meta {
-    margin: 250px 0 0;
+    margin: 60px 0 0;
     display: flex;
+    flex-wrap: wrap;
     gap: 34px;
 }
 
@@ -690,9 +697,7 @@ h1 {
     }
 
     .contact-panel {
-        width: 100%;
-        min-width: 0;
-        padding: 24px 20px;
+        padding: 32px 24px;
     }
 
     .contact-lines label {
@@ -707,8 +712,7 @@ h1 {
     }
 
     .contact-meta {
-        margin-top: 90px;
-        flex-wrap: wrap;
+        margin-top: 40px;
     }
 
     .project-overlay {
