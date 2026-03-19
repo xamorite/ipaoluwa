@@ -505,9 +505,19 @@ function App() {
             >
               x
             </button>
-            <p className="contact-title">
-              Use this form to describe your project
-            </p>
+            {showSuccess ? (
+              <div style={{ textAlign: "center", marginTop: "12vh" }}>
+                <p className="contact-title" style={{ marginBottom: "20px" }}>Proposal Received!</p>
+                <p style={{ fontSize: "18px", color: "#555", marginBottom: "40px" }}>
+                  I've received your project proposal and will get back to you shortly.
+                </p>
+                <button className="contact-btn" onClick={() => setContactOpen(false)}>Done</button>
+              </div>
+            ) : (
+              <>
+                <p className="contact-title">
+                  Use this form to describe your project
+                </p>
 
             <div className="contact-lines">
               <label>
@@ -571,8 +581,10 @@ function App() {
               </a>
               <a href="mailto:eogunneye@gmail.com">eogunneye@gmail.com</a>
             </p>
-          </div>
-        </div>
+          </>
+        )}
+      </div>
+    </div>
       ) : null}
     </div>
   );
