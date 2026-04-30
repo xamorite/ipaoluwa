@@ -44,16 +44,16 @@ const works = [
     ],
   },
   {
-    title: "Nudge Mobile",
-    tag: "Mobile Development",
-    image: "/images/xamorite-mobile.png",
-    tech: ["Flutter", "Dart", "Firebase", "Firestore", "Riverpod"],
+    title: "Hanoled Platform",
+    tag: "Web Development",
+    image: "/images/hanoled.png",
+    tech: ["React", "Vite", "Node.js", "PostgreSQL", "Prisma"],
     github: null,
-    live: null,
+    live: "https://hanoled.com",
     story: [
-      "Nudge is a productivity and accountability app built for planning habits and shared progress.",
-      "The app combines structured daily planning, task organization, and accountability mechanics with a smooth mobile-first UI.",
-      "Building Nudge helped me deepen practical Flutter architecture, state management, and product thinking for behavior-driven interfaces.",
+      "Hanoled is a modern school management platform that brings administrators, teachers, and parents together in one unified system.",
+      "I built the frontend with React and Vite, implementing role-based dashboards, dynamic gradebooks, and a centralized directory for managing students, teachers, and parents with clear assignments and role tagging.",
+      "The platform features real-time academic performance monitoring for parents, color-coded grade tracking, and a scalable pricing model — from startup schools to unlimited-scale institutions.",
     ],
   },
   {
@@ -80,6 +80,19 @@ const works = [
       "BTJ is a landing experience designed for a faith-centered community and message.",
       "I focused on visual tone, readability, and hierarchy so the page feels welcoming while preserving strong content clarity.",
       "The result is a focused single-page experience that balances storytelling and conversion intent.",
+    ],
+  },
+  {
+    title: "Nudge Mobile",
+    tag: "Mobile Development",
+    image: "/images/xamorite-mobile.png",
+    tech: ["Flutter", "Dart", "Firebase", "Firestore", "Riverpod"],
+    github: null,
+    live: null,
+    story: [
+      "Nudge is a productivity and accountability app built for planning habits and shared progress.",
+      "The app combines structured daily planning, task organization, and accountability mechanics with a smooth mobile-first UI.",
+      "Building Nudge helped me deepen practical Flutter architecture, state management, and product thinking for behavior-driven interfaces.",
     ],
   },
 ];
@@ -171,10 +184,10 @@ function FooterBlock() {
             GitHub
           </a>
         </p>
-        <p>
+        {/* <p>
           <a href="#">License</a>
           <a href="#">Terms of Use</a>
-        </p>
+        </p> */}
       </div>
     </footer>
   );
@@ -309,7 +322,7 @@ function App() {
                 <p>
                   MOPCARE
                   <br />
-                  Nudge
+                  Hanoled
                   <br />
                   PsychGen
                   <br />
