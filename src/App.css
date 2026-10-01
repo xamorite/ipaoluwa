@@ -594,9 +594,12 @@ a:hover > .arrow-out {
 
 .about-intro {
     max-width: 24em;
+    margin: 0;
     font-size: var(--text-statement);
+    font-weight: 500;
     line-height: 1.15;
     letter-spacing: -0.03em;
+    text-wrap: balance;
 }
 
 .about-columns .prose p {
@@ -730,6 +733,21 @@ a:hover > .arrow-out {
 
 .footer-bottom a:hover {
     text-decoration-color: currentColor;
+}
+
+/* Windows high-contrast and other forced-colors modes drop backgrounds,
+   so the current page needs a system highlight instead. */
+
+@media (forced-colors: active) {
+    .pill-nav {
+        border: 1px solid CanvasText;
+    }
+
+    .pill-nav a.active {
+        forced-color-adjust: none;
+        background: Highlight;
+        color: HighlightText;
+    }
 }
 
 /* Tablet */
