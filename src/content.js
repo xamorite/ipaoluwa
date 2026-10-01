@@ -1,5 +1,10 @@
 export const profile = {
   name: "Emmanuel Ogunneye",
+  alias: "xamorite",
+  role: "Frontend Engineer",
+  description:
+    "xamorite is Emmanuel Ogunneye, a frontend engineer in Nigeria building with React, Next.js and TypeScript. See case studies on Hanoled, MOPCARE and PsychGen.",
+  shareImage: "/og/xamorite.jpg",
   siteUrl: "https://xamorite.netlify.app",
   email: "eogunneye@gmail.com",
   resume: "/images/Resume.pdf",
@@ -15,7 +20,7 @@ export const socials = [
 
 export const intro = {
   title: "Frontend engineer passionate about building excellent software.",
-  body: "I'm Emmanuel. I work mostly in React, Next.js and TypeScript, and I care about the details that make an interface feel obvious: clear flows, fast pages and screens that work for everyone.",
+  body: "I'm Emmanuel, known online as xamorite. I work mostly in React, Next.js and TypeScript, and I care about the details that make an interface feel obvious: clear flows, fast pages and screens that work for everyone.",
   availability: "Open to frontend roles and freelance projects",
 };
 
@@ -40,7 +45,7 @@ export const projects = [
     period: null,
     stack: ["React", "Vite", "Node.js", "PostgreSQL", "Prisma"],
     image: "/images/hanoled.webp",
-    shareImage: "/og/hanoled.jpg",
+    shareImage: "/og/case-hanoled.jpg",
     imageSize: [1600, 1000],
     imageAlt:
       "Hanoled landing page with the headline “The ultimate school management system” and a call to log in.",
@@ -135,7 +140,7 @@ export const projects = [
     period: "Dec 2023 – Present",
     stack: ["Next.js", "TypeScript", "TailwindCSS", "Supabase"],
     image: "/images/mopacre.webp",
-    shareImage: "/og/mopacre.jpg",
+    shareImage: "/og/case-mopcare.jpg",
     imageSize: [1600, 1000],
     imageAlt:
       "MOPCARE home page: “Welcome To Mopcare” over a photo of two people embracing.",
@@ -193,7 +198,7 @@ export const projects = [
     period: "Nov 2024 – Dec 2024",
     stack: ["Next.js", "TailwindCSS", "ShadCN", "Axios", "PHP backend"],
     image: "/images/psy.webp",
-    shareImage: "/og/psy.jpg",
+    shareImage: "/og/case-psychgen.jpg",
     imageSize: [1600, 1000],
     imageAlt:
       "PsychGen Portal home page: “Explore African Genomics – Your Gateway to Psychiatric Research”.",
@@ -253,7 +258,7 @@ export const projects = [
     period: null,
     stack: ["React", "Vite", "TailwindCSS", "Valorant API"],
     image: "/images/xamorite-riot.webp",
-    shareImage: "/og/xamorite-riot.jpg",
+    shareImage: "/og/case-valorant-concept.jpg",
     imageSize: [1600, 958],
     imageAlt:
       "Valorant concept site showing the agent Jett, her Duelist role, a short bio and her four abilities.",
@@ -327,6 +332,7 @@ export const about = {
     "I trained at Aptech Computer Education in Nigeria, where I earned an Advanced Diploma in Software Engineering and later joined the faculty as a React instructor. Teaching beginners was a crash course in clarity: if I couldn't explain a component simply, it was usually doing too much.",
     "Since December 2023 I've been a frontend engineer at MOPCARE, building a type-safe Next.js and TypeScript frontend on Supabase. In late 2024 I worked on PsychGen Portal, building reusable components, search and data views for researchers. I also built the frontend for Hanoled, a school management platform for administrators, teachers and parents.",
     "My B.Sc. in Information Technology and Business Information Systems at Middlesex University Dubai added the business side: thinking about who a product serves and what it needs to achieve, not only how it's built.",
+    "Online, I go by xamorite: on GitHub, on X and on Instagram.",
   ],
 };
 

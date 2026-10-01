@@ -15,14 +15,17 @@ function withMeta(template, meta) {
     [/(<title>)[^<]*(<\/title>)/, meta.title],
     [/(<meta\s+name="title"\s+content=")[^"]*(")/, meta.title],
     [/(<meta\s+name="description"\s+content=")[^"]*(")/, meta.description],
+    [/(<link\s+rel="canonical"\s+href=")[^"]*(")/, url],
     [/(<meta\s+property="og:url"\s+content=")[^"]*(")/, url],
     [/(<meta\s+property="og:title"\s+content=")[^"]*(")/, meta.title],
     [/(<meta\s+property="og:description"\s+content=")[^"]*(")/, meta.description],
     [/(<meta\s+property="og:image"\s+content=")[^"]*(")/, image],
+    [/(<meta\s+property="og:image:alt"\s+content=")[^"]*(")/, meta.imageAlt],
     [/(<meta\s+property="twitter:url"\s+content=")[^"]*(")/, url],
     [/(<meta\s+property="twitter:title"\s+content=")[^"]*(")/, meta.title],
     [/(<meta\s+property="twitter:description"\s+content=")[^"]*(")/, meta.description],
     [/(<meta\s+property="twitter:image"\s+content=")[^"]*(")/, image],
+    [/(<meta\s+property="twitter:image:alt"\s+content=")[^"]*(")/, meta.imageAlt],
   ]
   let html = template
   for (const [pattern, value] of tags) {
@@ -30,7 +33,13 @@ function withMeta(template, meta) {
     html = html.replace(pattern, (_, before, after) => before + escapeHtml(value) + after)
   }
   if (meta.noindex) {
+    html = html.replace(/\s*<link\s+rel="canonical"[^>]*>/, '')
     html = html.replace('</head>', '  <meta name="robots" content="noindex">\n</head>')
+  }
+  if (meta.jsonLd) {
+    // Escape "<" so the JSON can never close the script tag early.
+    const json = JSON.stringify(meta.jsonLd).replace(/</g, '\\u003c')
+    html = html.replace('</head>', `  <script type="application/ld+json">${json}</script>\n</head>`)
   }
   return html
 }
@@ -55,10 +64,9 @@ function prerenderMeta() {
         await writeFile(file, withMeta(template, metaForRoute(route)))
       }
 
-      const paths = [
-        '/',
-        ...prerenderRoutes.filter((route) => route.page !== 'not-found').map((route) => metaForRoute(route).path),
-      ]
+      const paths = prerenderRoutes
+        .filter((route) => route.page !== 'not-found')
+        .map((route) => metaForRoute(route).path)
       const urls = paths.map((p) => `  <url><loc>${profile.siteUrl}${p}</loc></url>`).join('\n')
       await writeFile(
         path.join(outDir, 'sitemap.xml'),
@@ -80,7 +88,7 @@ function noscriptFallback() {
   const fallback = [
     '<noscript>',
     '    <div class="noscript">',
-    `      <h1>${escapeHtml(profile.name)}</h1>`,
+    `      <h1>${escapeHtml(profile.name)} · ${escapeHtml(profile.alias)}</h1>`,
     `      <p>${escapeHtml(intro.title)} This site needs JavaScript to show my work, but you can still reach me:</p>`,
     `      <p>${links.join(' · ')}</p>`,
     '    </div>',

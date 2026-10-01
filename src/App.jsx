@@ -117,7 +117,7 @@ function SiteHeader({ page }) {
     <header className="topbar">
       <div className="identity">
         <Link to="/">{profile.name}</Link>
-        <span>Frontend engineer, Nigeria</span>
+        <span>{profile.alias} · Frontend engineer, Nigeria</span>
       </div>
 
       <nav className="pill-nav" aria-label="Main">
@@ -470,7 +470,7 @@ function SiteFooter() {
       </div>
       <div className="footer-bottom">
         <p>
-          &copy; {new Date().getFullYear()} {profile.name}
+          &copy; {new Date().getFullYear()} {profile.name} · {profile.alias}
         </p>
         <ul aria-label="Social links">
           {socials.map((social) => (
