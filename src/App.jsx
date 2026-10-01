@@ -383,7 +383,8 @@ function ProjectPage({ index }) {
 function AboutPage() {
   return (
     <>
-      <h1 className="about-intro">{about.lead}</h1>
+      <h1 className="visually-hidden">About</h1>
+      <p className="about-intro">{about.lead}</p>
 
       <section className="about-columns">
         <aside>

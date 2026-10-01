@@ -2,7 +2,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { profile } from './src/content.js'
+import { intro, profile, socials } from './src/content.js'
 import { metaForRoute, prerenderRoutes } from './src/routes.js'
 
 const escapeHtml = (value) =>
@@ -69,7 +69,32 @@ function prerenderMeta() {
   }
 }
 
+// Adds a short fallback for visitors without JavaScript: name, role and ways
+// to get in touch. Built from content.js so it stays in step with the site.
+function noscriptFallback() {
+  const links = [
+    `<a href="mailto:${profile.email}">${escapeHtml(profile.email)}</a>`,
+    ...socials.map((social) => `<a href="${social.href}">${escapeHtml(social.label)}</a>`),
+    `<a href="${profile.resume}">Résumé (PDF)</a>`,
+  ]
+  const fallback = [
+    '<noscript>',
+    '    <div class="noscript">',
+    `      <h1>${escapeHtml(profile.name)}</h1>`,
+    `      <p>${escapeHtml(intro.title)} This site needs JavaScript to show my work, but you can still reach me:</p>`,
+    `      <p>${links.join(' · ')}</p>`,
+    '    </div>',
+    '  </noscript>',
+  ].join('\n')
+  return {
+    name: 'noscript-fallback',
+    transformIndexHtml(html) {
+      return html.replace('<div id="root"></div>', `<div id="root"></div>\n  ${fallback}`)
+    },
+  }
+}
+
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), prerenderMeta()],
+  plugins: [react(), noscriptFallback(), prerenderMeta()],
 })
