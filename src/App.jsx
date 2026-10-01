@@ -13,6 +13,7 @@ import {
   socials,
   tools,
 } from "./content";
+import { matchRoute, metaForRoute } from "./routes";
 
 const NavigateContext = createContext(() => {});
 
@@ -59,25 +60,6 @@ function useRouter() {
   return [path, navigate];
 }
 
-function matchRoute(path) {
-  const clean = path.replace(/\/+$/, "") || "/";
-  if (clean === "/") return { page: "home" };
-  if (clean === "/about") return { page: "about" };
-  const match = clean.match(/^\/work\/([\w-]+)$/);
-  const index = match ? projects.findIndex((p) => p.slug === match[1]) : -1;
-  if (index !== -1) return { page: "project", index };
-  return { page: "not-found" };
-}
-
-function pageTitle(route) {
-  if (route.page === "project") {
-    return `${projects[route.index].title}, a case study by ${profile.name}`;
-  }
-  if (route.page === "about") return `About ${profile.name}`;
-  if (route.page === "not-found") return `Page not found | ${profile.name}`;
-  return `${profile.name} | Frontend Engineer`;
-}
-
 function Link({ to, ...props }) {
   const navigate = useContext(NavigateContext);
   const handleClick = (event) => {
@@ -119,11 +101,11 @@ function Arrow({ direction = "right" }) {
   );
 }
 
-function ExternalLink({ href, children, ...props }) {
+function ExternalLink({ href, children, showIcon = true, ...props }) {
   return (
     <a href={href} target="_blank" rel="noreferrer" {...props}>
       {children}
-      <Arrow direction="out" />
+      {showIcon ? <Arrow direction="out" /> : null}
       <span className="visually-hidden"> (opens in a new tab)</span>
     </a>
   );
@@ -139,7 +121,11 @@ function SiteHeader({ page }) {
       </div>
 
       <nav className="pill-nav" aria-label="Main">
-        <Link to="/" className={onWork ? "active" : undefined} aria-current={page === "home" ? "page" : undefined}>
+        <Link
+          to="/"
+          className={onWork ? "active" : undefined}
+          aria-current={page === "home" ? "page" : onWork ? "true" : undefined}
+        >
           Work
         </Link>
         <Link
@@ -155,20 +141,22 @@ function SiteHeader({ page }) {
       <ul className="social-mini" aria-label="Elsewhere">
         {socials.slice(0, 2).map((social) => (
           <li key={social.label}>
-            <a href={social.href} target="_blank" rel="noreferrer">
+            <ExternalLink href={social.href} showIcon={false}>
               {social.label}
-            </a>
+            </ExternalLink>
           </li>
         ))}
         <li>
-          <a href={profile.resume} target="_blank" rel="noreferrer">
+          <ExternalLink href={profile.resume} showIcon={false}>
             Résumé
-          </a>
+          </ExternalLink>
         </li>
       </ul>
     </header>
   );
 }
+
+const smallImage = (src) => src.replace(/\.webp$/, "-800.webp");
 
 function ProjectTile({ project, lead = false }) {
   const [width, height] = project.imageSize;
@@ -177,6 +165,8 @@ function ProjectTile({ project, lead = false }) {
       <span className="tile-media">
         <img
           src={project.image}
+          srcSet={`${smallImage(project.image)} 800w, ${project.image} 1600w`}
+          sizes={lead ? "(max-width: 1000px) 100vw, 1300px" : "(max-width: 820px) 100vw, 420px"}
           alt=""
           width={width}
           height={height}
@@ -365,7 +355,15 @@ function ProjectPage({ index }) {
       </header>
 
       <figure className="case-media">
-        <img src={project.image} alt={project.imageAlt} width={width} height={height} fetchPriority="high" />
+        <img
+          src={project.image}
+          srcSet={`${smallImage(project.image)} 800w, ${project.image} 1600w`}
+          sizes="(max-width: 1000px) 100vw, 1300px"
+          alt={project.imageAlt}
+          width={width}
+          height={height}
+          fetchPriority="high"
+        />
       </figure>
 
       <div className="story">
@@ -396,15 +394,15 @@ function AboutPage() {
             </li>
             {socials.map((social) => (
               <li key={social.label}>
-                <a href={social.href} target="_blank" rel="noreferrer">
+                <ExternalLink href={social.href} showIcon={false}>
                   {social.label}
-                </a>
+                </ExternalLink>
               </li>
             ))}
             <li>
-              <a href={profile.resume} target="_blank" rel="noreferrer">
+              <ExternalLink href={profile.resume} showIcon={false}>
                 Résumé (PDF)
-              </a>
+              </ExternalLink>
             </li>
           </ul>
         </aside>
@@ -478,15 +476,15 @@ function SiteFooter() {
         <ul aria-label="Social links">
           {socials.map((social) => (
             <li key={social.label}>
-              <a href={social.href} target="_blank" rel="noreferrer">
+              <ExternalLink href={social.href} showIcon={false}>
                 {social.label}
-              </a>
+              </ExternalLink>
             </li>
           ))}
           <li>
-            <a href={profile.resume} target="_blank" rel="noreferrer">
+            <ExternalLink href={profile.resume} showIcon={false}>
               Résumé
-            </a>
+            </ExternalLink>
           </li>
         </ul>
       </div>
@@ -497,7 +495,7 @@ function SiteFooter() {
 function App() {
   const [path, navigate] = useRouter();
   const route = matchRoute(path);
-  const title = pageTitle(route);
+  const { title } = metaForRoute(route);
   const mainRef = useRef(null);
   const lastPath = useRef(path);
 
