@@ -1,5 +1,6 @@
 export const profile = {
   name: "Emmanuel Ogunneye",
+  siteUrl: "https://xamorite.netlify.app",
   email: "eogunneye@gmail.com",
   resume: "/images/Resume.pdf",
   whatsapp: "2349013729581",
@@ -18,7 +19,7 @@ export const intro = {
   availability: "Open to frontend roles and freelance projects",
 };
 
-export const clients = ["Hanoled", "MOPCARE", "PsychGen Africa", "BTJ"];
+export const clients = ["Hanoled", "MOPCARE", "PsychGen Portal", "BTJ"];
 
 export const aboutTeaser = {
   title:
@@ -39,6 +40,7 @@ export const projects = [
     period: null,
     stack: ["React", "Vite", "Node.js", "PostgreSQL", "Prisma"],
     image: "/images/hanoled.webp",
+    shareImage: "/og/hanoled.jpg",
     imageSize: [1600, 1000],
     imageAlt:
       "Hanoled landing page with the headline “The ultimate school management system” and a call to log in.",
@@ -133,6 +135,7 @@ export const projects = [
     period: "Dec 2023 – Present",
     stack: ["Next.js", "TypeScript", "TailwindCSS", "Supabase"],
     image: "/images/mopacre.webp",
+    shareImage: "/og/mopacre.jpg",
     imageSize: [1600, 1000],
     imageAlt:
       "MOPCARE home page: “Welcome To Mopcare” over a photo of two people embracing.",
@@ -190,6 +193,7 @@ export const projects = [
     period: "Nov 2024 – Dec 2024",
     stack: ["Next.js", "TailwindCSS", "ShadCN", "Axios", "PHP backend"],
     image: "/images/psy.webp",
+    shareImage: "/og/psy.jpg",
     imageSize: [1600, 1000],
     imageAlt:
       "PsychGen Portal home page: “Explore African Genomics – Your Gateway to Psychiatric Research”.",
@@ -249,6 +253,7 @@ export const projects = [
     period: null,
     stack: ["React", "Vite", "TailwindCSS", "Valorant API"],
     image: "/images/xamorite-riot.webp",
+    shareImage: "/og/xamorite-riot.jpg",
     imageSize: [1600, 958],
     imageAlt:
       "Valorant concept site showing the agent Jett, her Duelist role, a short bio and her four abilities.",

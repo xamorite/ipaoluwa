@@ -1,18 +1,42 @@
-# React + Vite
+# Emmanuel Ogunneye: portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio built with React and Vite, deployed on Netlify at
+[xamorite.netlify.app](https://xamorite.netlify.app).
 
-Currently, two official plugins are available:
+## Run it
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+npm install
+npm run dev      # local dev server
+npm run lint
+npm run build    # production build in dist/
+npm run preview  # serve the build locally
+```
 
-## React Compiler
+## Where things live
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- `src/content.js`: all copy. Profile, featured projects and their case
+  studies, other projects, experience, education and tools.
+- `src/routes.js`: the page list, plus each page's title and link-preview
+  details.
+- `src/App.jsx`: components and a small history-based router
+  (`/`, `/about`, `/work/:slug`).
+- `src/index.css`: design tokens for color, spacing and type. `src/App.css`
+  holds component styles.
+- `public/images/`: project screenshots as WebP, at 1600px and 800px
+  (`-800.webp`).
+- `public/og/`: 1200×630 link-preview images, one per case study.
 
-## Expanding the ESLint configuration
+## Adding a project
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Add an entry to `projects` in `src/content.js` with a `slug`, its screenshots
+(`image`, a matching `-800.webp`, and `shareImage`) and a `story`. The build
+then creates `/work/<slug>` with its own title and preview tags.
 
-# ipaoluwa
+## How deep links work
+
+During `vite build`, a small plugin in `vite.config.js` writes a copy of
+`index.html` for every page in `src/routes.js`, with that page's title,
+description and Open Graph tags. Netlify serves those files directly, so
+shared links preview correctly. Addresses with no file get `404.html` with a
+real 404 status.
