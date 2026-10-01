@@ -12,7 +12,7 @@ export const socials = [
 ];
 
 export const intro = {
-  title: "Frontend engineer building software for schools, caregivers and researchers.",
+  title: "Frontend engineer passionate about building excellent software.",
   body: "I'm Emmanuel. I work mostly in React, Next.js and TypeScript, and I care about the details that make an interface feel obvious: clear flows, fast pages and screens that work for everyone.",
   availability: "Open to frontend roles and freelance projects",
 };
