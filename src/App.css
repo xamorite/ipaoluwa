@@ -669,6 +669,7 @@ a:hover > .arrow-out {
     gap: var(--space-2);
     min-height: 52px;
     padding: 0 var(--space-6);
+    border: 1px solid transparent;
     border-radius: 999px;
     background: var(--night-ink);
     color: var(--night);
@@ -681,25 +682,16 @@ a:hover > .arrow-out {
     background: var(--night-highlight);
 }
 
-.icon-button {
-    display: inline-grid;
-    place-items: center;
-    width: 52px;
-    height: 52px;
-    border: 1px solid var(--night-line);
-    border-radius: 999px;
+.button-secondary {
+    border-color: var(--night-border);
+    background: transparent;
     color: var(--night-ink);
     transition: background-color 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
 }
 
-.icon-button:hover {
+.button-secondary:hover {
     border-color: var(--night-faint);
     background: var(--night-hover);
-}
-
-.touch-block .contact-address {
-    font-size: var(--text-small);
-    user-select: all;
 }
 
 .footer-bottom {
@@ -845,7 +837,11 @@ a:hover > .arrow-out {
 
     .pill-nav {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .pill-nav a {
+        padding-inline: var(--space-2);
     }
 
     .tile-media {

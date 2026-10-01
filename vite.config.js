@@ -36,8 +36,9 @@ function withMeta(template, meta) {
 }
 
 // Writes a copy of index.html for each page with that page's title and
-// link-preview tags. Netlify serves these files directly, and 404.html
-// (with a real 404 status) for any address that has no file.
+// link-preview tags, plus sitemap.xml and robots.txt. Netlify serves these
+// files directly, and 404.html (with a real 404 status) for any address
+// that has no file.
 function prerenderMeta() {
   let outDir
   return {
@@ -53,6 +54,17 @@ function prerenderMeta() {
         await mkdir(path.dirname(file), { recursive: true })
         await writeFile(file, withMeta(template, metaForRoute(route)))
       }
+
+      const paths = [
+        '/',
+        ...prerenderRoutes.filter((route) => route.page !== 'not-found').map((route) => metaForRoute(route).path),
+      ]
+      const urls = paths.map((p) => `  <url><loc>${profile.siteUrl}${p}</loc></url>`).join('\n')
+      await writeFile(
+        path.join(outDir, 'sitemap.xml'),
+        `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`,
+      )
+      await writeFile(path.join(outDir, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${profile.siteUrl}/sitemap.xml\n`)
     },
   }
 }
