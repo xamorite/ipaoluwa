@@ -25,7 +25,9 @@ npm run preview  # serve the build locally
   holds component styles.
 - `public/images/`: project screenshots as WebP, at 1600px and 800px
   (`-800.webp`).
-- `public/og/`: 1200×630 link-preview images, one per case study.
+- `public/og/`: 1200×630 link-preview images, one per case study plus
+  `home.jpg` for the home and About pages. If the home headline changes,
+  `home.jpg` needs re-exporting, because the headline is part of the image.
 
 ## Adding a project
 
@@ -37,6 +39,7 @@ then creates `/work/<slug>` with its own title and preview tags.
 
 During `vite build`, a small plugin in `vite.config.js` writes a copy of
 `index.html` for every page in `src/routes.js`, with that page's title,
-description and Open Graph tags. Netlify serves those files directly, so
+description and Open Graph tags. It also writes `sitemap.xml` and
+`robots.txt` from the same page list. Netlify serves those files directly, so
 shared links preview correctly. Addresses with no file get `404.html` with a
 real 404 status.

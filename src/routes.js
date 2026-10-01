@@ -30,7 +30,7 @@ export function metaForRoute(route) {
       title: `About ${profile.name}`,
       description: `Experience, education and tools of ${profile.name}, a frontend engineer from Nigeria.`,
       path: "/about",
-      image: "/og_image.png",
+      image: "/og/home.jpg",
     };
   }
   if (route.page === "not-found") {
@@ -38,7 +38,7 @@ export function metaForRoute(route) {
       title: `Page not found | ${profile.name}`,
       description: "This page doesn't exist.",
       path: "/404",
-      image: "/og_image.png",
+      image: "/og/home.jpg",
       noindex: true,
     };
   }
