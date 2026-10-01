@@ -11,6 +11,8 @@
   --night-muted: #a4aabb;
   --night-faint: #8a91a5;
   --night-line: #2b3041;
+  --night-hover: rgba(240, 242, 248, 0.08);
+  --night-highlight: #ffffff;
 
   /* Spacing, on a 4px base */
   --space-1: 4px;

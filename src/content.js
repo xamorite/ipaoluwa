@@ -2,6 +2,7 @@ export const profile = {
   name: "Emmanuel Ogunneye",
   email: "eogunneye@gmail.com",
   resume: "/images/Resume.pdf",
+  whatsapp: "2349013729581",
 };
 
 export const socials = [
