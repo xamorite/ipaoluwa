@@ -37,6 +37,7 @@
   --text-display: clamp(2.5rem, 6.2vw, 5.5rem);
 
   /* Shape and motion */
+  --target-min: 44px;
   --radius-tile: 24px;
   --radius-frame: 36px;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
